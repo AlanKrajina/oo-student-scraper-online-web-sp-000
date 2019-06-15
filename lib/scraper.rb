@@ -16,6 +16,7 @@ class Scraper
         :location => student.css("p.student-location").text,
         :profile_url => student.css("a").attribute("href").value
       }
+      binding.pry
     end
     student_index_array
   end
@@ -40,9 +41,12 @@ class Scraper
 
     student_profile[:profile_quote] = profile.css("div.main-wrapper.profile .vitals-text-container .profile-quote").text
     student_profile[:bio] = profile.css("div.main-wrapper.profile .description-holder p").text
+    doc.css(".main-wrapper div.social-icon-container").each do |link|
+    array <<  link.css("a").attribute("href").value
 
     student_profile
   end
+end
 end
 
 =begin
